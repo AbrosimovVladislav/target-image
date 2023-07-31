@@ -1,0 +1,18 @@
+server:
+  port: 8085
+
+open-ai:
+  bearer-key: ${OPEN_API_TOKEN}
+  chat-gpt-url: https://api.openai.com/v1/chat/completions
+  dalle-url: https://api.openai.com/v1/images/generations
+
+image-generation:
+  size: 1024x1024
+
+do:
+  spaces:
+    key: "EI6ML7AKJTFPJPUZGUZF"
+    secret: "DNxgO67ZyMF+CLN2gsxGrugdygOUwCOXsNh8H0pJQWg"
+    endpoint: "digitaloceanspaces.com"
+    region: "fra1"
+    bucket: "gunmarket.fra1"
