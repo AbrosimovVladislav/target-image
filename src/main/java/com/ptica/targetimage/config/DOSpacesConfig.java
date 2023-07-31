@@ -1,4 +1,4 @@
-package com.videoskif.config;
+package com.ptica.targetimage.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;

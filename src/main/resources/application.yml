@@ -9,14 +9,6 @@ open-ai:
 image-generation:
   size: 1024x1024
 
-text-speech:
-  output-path: target/data_bundle/text-speech/
-
-video-generation:
-  output:
-    directory: target/data_bundle/videos/
-    filename_pattern: output{num}.mp4
-
 do:
   spaces:
     key: "EI6ML7AKJTFPJPUZGUZF"
