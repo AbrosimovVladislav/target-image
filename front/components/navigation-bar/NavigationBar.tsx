@@ -1,29 +1,92 @@
 "use client"
 
-import {Code, Group, Navbar, ScrollArea} from "@mantine/core";
-import {LinksGroup} from "@/components/navigation-bar/NavbarLinksGroup";
-import {menu} from "@/constants/menu";
-import Image from "next/image";
+import {Box, NavLink} from '@mantine/core';
+import {IconVersions, IconHome, IconAd} from '@tabler/icons-react';
+import Logo from "@/components/navigation-bar/Logo";
+import {JSX, useState} from "react";
+import { usePathname } from 'next/navigation'
 
+interface MenuItem{
+  label:string,
+  icon?: JSX.Element,
+  href?: string,
+  children?: MenuItem[],
+}
 
 const NavigationBar = () => {
 
-  const links = menu.map((item) => <LinksGroup {...item} key={item.label} />);
+  const pathname = usePathname()
+  const [activeItem, setActiveItem] = useState<string>(pathname);
+
+  const menu: MenuItem[] = [
+    {
+      label: "Main Page",
+      icon: <IconHome color="teal" size="1.5rem" stroke={1.5}/>,
+      href: "/"
+    },
+    {
+      label: "Generate Ads Image",
+      icon: <IconAd color="teal" size="1.5rem" stroke={1.5}/>,
+      href: "/generate-ads-image"
+    },
+    {
+      label: "Release Versions",
+      icon: <IconVersions color="teal" size="1.5rem" stroke={1.5}/>,
+      children: [
+        {
+          label: "Version 0.0.1",
+          href: "/v/0.0.1"
+        },
+        {
+          label: "Version 0.0.2",
+          href: "/v/0.0.1"
+        },
+        {
+          label: "Version 0.0.3",
+          children: [
+            {
+              label: "Version 0.0.3.1",
+              href: "/v/0.0.3.1"
+            },
+            {
+              label: "Version 0.0.3.2",
+              href: "/v/0.0.3.2"
+            },
+            {
+              label: "Version 0.0.3.3",
+              href: "/v/0.0.3.3"
+            },
+          ]
+        },
+      ]
+    }
+  ]
+
+  const menuRendering = (array: MenuItem[]): JSX => {
+    return array.map(item => {
+          return <NavLink
+              className={activeItem==item.href
+                  ? "text-gray-900 bg-green-50"
+                  : "text-gray-700 hover:text-gray-900 hover:bg-green-100"}
+              component="a"
+              label={item.label}
+              icon={item.icon}
+              href={item.href}
+              onClick={() => setActiveItem(item.href ? item.href : "/")}>
+            {item.children && menuRendering(item.children)}
+          </NavLink>
+        }
+    )
+  }
 
   return (
-      <div>
-        <Navbar className="h-800 min-w-[100%] pb-0" p="md">
-          <Navbar.Section className="px-2 pt-1 pb-3 mx-0 mt-2 border-b-2 border-solid border-slate-300">
-            <Group position="apart">
-              <Image src="/logo.png" width={200} height={200} />
-              <Code  className="bg-blue-100" sx={{fontWeight: 700 }}>v0.0.1</Code>
-            </Group>
-          </Navbar.Section>
-
-          <Navbar.Section grow className="mx-4" component={ScrollArea}>
-            <div className="py-8">{links}</div>
-          </Navbar.Section>
-        </Navbar>
+      <div className="min-h-screen border-r-2 border-solid border-slate-300">
+        <Logo/>
+        <Box className="w-240 p-30">
+          {
+            menuRendering(menu)
+          }
+        </Box>
       </div>
   )
 }
