@@ -80,7 +80,7 @@ const NavigationBar = () => {
   }
 
   return (
-      <div className="min-h-screen border-r-2 border-solid border-slate-300">
+      <div className="min-h-screen min-w-[21%] border-r-2 border-solid border-slate-300">
         <Logo/>
         <Box className="w-240 p-30">
           {
