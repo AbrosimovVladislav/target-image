@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {ColorPicker, Text, Box, DEFAULT_THEME} from '@mantine/core';
+import {ColorPicker,Badge,Text, Box, DEFAULT_THEME} from '@mantine/core';
 
 interface LabeledColorPickerProps {
   label: string
@@ -7,10 +7,16 @@ interface LabeledColorPickerProps {
 
 const LabeledColorPicker = ({label}: LabeledColorPickerProps) => {
 
-  const [value, onChange] = useState('rgba(47, 119, 150, 0.7)');
+  const [value, onChange] = useState('#dee2e6');
   return (
-      <div>
-        <Text className="font-semibold mb-1 mt-10">{label}</Text>
+      <div className="my-8">
+        <div className="flex flex-row">
+          <Text className=" mr-3">{label}</Text>
+          <Badge style={{backgroundColor: value, color:'black'}}>
+            {value}
+          </Badge>
+        </div>
+
         <Box maw={300}>
           <ColorPicker
               format="hex"
@@ -19,14 +25,28 @@ const LabeledColorPicker = ({label}: LabeledColorPickerProps) => {
               withPicker={false}
               fullWidth
               swatches={[
-                ...DEFAULT_THEME.colors.red,
-                ...DEFAULT_THEME.colors.green,
-                ...DEFAULT_THEME.colors.blue,
+                ...DEFAULT_THEME.colors.gray.slice(3,4),
+                ...DEFAULT_THEME.colors.gray.slice(7,8),
+                ...DEFAULT_THEME.colors.red.slice(3,4),
+                ...DEFAULT_THEME.colors.red.slice(7,8),
+                ...DEFAULT_THEME.colors.grape.slice(3,4),
+                ...DEFAULT_THEME.colors.grape.slice(7,8),
+                ...DEFAULT_THEME.colors.violet.slice(3,4),
+                ...DEFAULT_THEME.colors.violet.slice(7,8),
+                ...DEFAULT_THEME.colors.blue.slice(3,4),
+                ...DEFAULT_THEME.colors.blue.slice(7,8),
+                ...DEFAULT_THEME.colors.cyan.slice(3,4),
+                ...DEFAULT_THEME.colors.cyan.slice(7,8),
+                ...DEFAULT_THEME.colors.teal.slice(3,4),
+                ...DEFAULT_THEME.colors.teal.slice(7,8),
+                ...DEFAULT_THEME.colors.green.slice(3,4),
+                ...DEFAULT_THEME.colors.green.slice(7,8),
+                ...DEFAULT_THEME.colors.yellow.slice(3,4),
+                ...DEFAULT_THEME.colors.yellow.slice(7,8),
+                ...DEFAULT_THEME.colors.orange.slice(3,4),
+                ...DEFAULT_THEME.colors.orange.slice(7,8),
               ]}
           />
-          <Text align="center" mt={5}>
-            {value}
-          </Text>
         </Box>
       </div>
   )

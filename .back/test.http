@@ -1,16 +1,18 @@
 ### GET request with a header
-GET http://localhost:8085/test
-Accept: application/json
+POST http://localhost:8085/api/v1/image-by-url/
+Content-Type: application/json
+
+{
+  "url": "www.www.www",
+  "mood": "Casual",
+  "aspectRatio": "20:9",
+  "colors": "5432523,423423,234234"
+}
 
 ###
-
 # curl "http://api.scrape.do?token=d131abe91798447b86f38917aad459dff2a7c4c963e&url=https://httpbin.co/ip"
 GET http://api.scrape.do?token=d131abe91798447b86f38917aad459dff2a7c4c963e&url=https://cleanhunter-sochi.ru/
 
 ###
-
 # curl "https://api.webscraping.ai/html?api_key=29119120-1a90-46bd-875a-a9a9216194f2&url=https://example.com"
 GET https://api.webscraping.ai/html?api_key=29119120-1a90-46bd-875a-a9a9216194f2&url=https://cleanhunter-sochi.ru/
-
-###
-

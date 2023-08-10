@@ -21,7 +21,9 @@ const GenerateAdsImage = () => {
                            icon={<IconAspectRatio/>}
                            variants={["16:9", "20:5", "3:4"]}/>
 
-          <LabeledColorPicker label="Choose 3 colors for Image"/>
+          <LabeledColorPicker label="Choose first color for Image"/>
+          <LabeledColorPicker label="Choose second color for Image"/>
+          <LabeledColorPicker label="Choose third color for Image"/>
 
 
           <div className="flex justify-center items-center">
@@ -35,7 +37,6 @@ const GenerateAdsImage = () => {
         <div className="m-4">
           <Generated website="cleanhunter-sochi.ru"/>
         </div>
-
 
       </div>
   )

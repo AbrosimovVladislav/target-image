@@ -21,12 +21,12 @@ public class TargetImageByLandingOrchestrator {
   private final ImageGenerationAIService imageGenerationAIService;
   private final S3Service s3Service;
 
-  public List<String> getImageByLink(String landingUrl) {
+  public List<String> getImageByLink(String landingUrl, String mood, String aspectRatio, String colors) {
     String landingConcept = pluginService.getLandingConceptByPlugin(landingUrl);
     String promt = gptService.getPromtForImageGenerationAI(landingConcept,
-        promtSchemaGenerator.getPromt());
+        promtSchemaGenerator.getPromt(), mood, aspectRatio, colors);
     List<String> images = imageGenerationAIService.getImagesByPromt(promt);
-    List<String> imageUrls = s3Service.saveImagesToStorage(images);
+    List<String> imageUrls = s3Service.saveImagesToStorageMock(images);
     return imageUrls;
   }
 }

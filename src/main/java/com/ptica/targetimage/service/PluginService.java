@@ -11,6 +11,6 @@ public class PluginService {
   public String getLandingConceptByPlugin(String landingUrl) {
     log.info("Concept receiving started");
     log.info("Concept successfully received");
-    return "null";
+    return "Concept Mock";
   }
 }

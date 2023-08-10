@@ -13,6 +13,6 @@ public class ImageGenerationAIService {
   public List<String> getImagesByPromt(String promt) {
     log.info("Images receiving started");
     log.info("Images successfully received");
-    return Collections.emptyList();
+    return List.of(promt);
   }
 }

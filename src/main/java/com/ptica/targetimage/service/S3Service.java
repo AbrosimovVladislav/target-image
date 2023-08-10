@@ -27,6 +27,12 @@ public class S3Service {
   @Value("${do.spaces.endpoint}")
   private String doSpaceEndpoint;
 
+  public List<String> saveImagesToStorageMock(List<String> images){
+    log.info("Images saving started");
+    log.info("Images successfully saved");
+    return images;
+  }
+
   public List<String> saveImagesToStorage(List<String> images) {
     log.info("Images saving started");
     List<String> imageUrls = images.stream()

@@ -9,6 +9,6 @@ public class PromtSchemaGenerator {
 
   //ToDo to implement
   public String getPromt() {
-    return null;
+    return "Promt Mock";
   }
 }

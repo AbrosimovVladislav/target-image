@@ -25,6 +25,12 @@ public class ChatGPTClient {
 
   private final RestTemplate restTemplate;
 
+  public ResponseEntity<String> callMock(ChatGPTRequest request){
+    ResponseEntity<String> mockResponse = ResponseEntity.ok(request.getMessages().get(0).getContent());
+    log.info("ChatGPT request: <{}>. ChatGPT response: <{}>", request, mockResponse);
+    return mockResponse;
+  }
+
   public ResponseEntity<String> call(ChatGPTRequest request) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);

@@ -2,7 +2,8 @@ server:
   port: 8085
 
 open-ai:
-  bearer-key: ${OPEN_API_TOKEN}
+#  bearer-key: ${OPEN_API_TOKEN}
+  bearer-key: OPEN_API_TOKEN
   chat-gpt-url: https://api.openai.com/v1/chat/completions
   dalle-url: https://api.openai.com/v1/images/generations
 
