@@ -4,8 +4,10 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,10 +29,19 @@ public class S3Service {
   @Value("${do.spaces.endpoint}")
   private String doSpaceEndpoint;
 
-  public List<String> saveImagesToStorageMock(List<String> images){
+  public List<String> saveImagesToStorageMock(List<String> images) {
+
+    List<String> allImages = s3Client.listObjects(doSpaceBucket).getObjectSummaries()
+        .stream()
+        .map(e -> "https://gunmarket.fra1.digitaloceanspaces.com/" + e.getKey()).toList();
+
     log.info("Images saving started");
     log.info("Images successfully saved");
-    return images;
+    return new Random().ints(0, allImages.size())
+        .distinct()
+        .limit(4)
+        .mapToObj(allImages::get)
+        .collect(Collectors.toList());
   }
 
   public List<String> saveImagesToStorage(List<String> images) {

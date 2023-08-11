@@ -5,6 +5,7 @@ import com.ptica.targetimage.service.ImageGenerationAIService;
 import com.ptica.targetimage.service.PluginService;
 import com.ptica.targetimage.service.PromtSchemaGenerator;
 import com.ptica.targetimage.service.S3Service;
+import com.ptica.targetimage.web.dto.ImageGenerationDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +22,12 @@ public class TargetImageByLandingOrchestrator {
   private final ImageGenerationAIService imageGenerationAIService;
   private final S3Service s3Service;
 
-  public List<String> getImageByLink(String landingUrl, String mood, String aspectRatio, String colors) {
+  public ImageGenerationDto getImageByLink(String landingUrl, String mood, String aspectRatio, String colors) {
     String landingConcept = pluginService.getLandingConceptByPlugin(landingUrl);
     String promt = gptService.getPromtForImageGenerationAI(landingConcept,
         promtSchemaGenerator.getPromt(), mood, aspectRatio, colors);
     List<String> images = imageGenerationAIService.getImagesByPromt(promt);
     List<String> imageUrls = s3Service.saveImagesToStorageMock(images);
-    return imageUrls;
+    return ImageGenerationDto.builder().promt(promt).images(imageUrls).build();
   }
 }

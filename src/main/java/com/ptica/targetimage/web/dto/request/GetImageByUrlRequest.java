@@ -1,4 +1,4 @@
-package com.ptica.targetimage.web.request;
+package com.ptica.targetimage.web.dto.request;
 
 import lombok.Data;
 

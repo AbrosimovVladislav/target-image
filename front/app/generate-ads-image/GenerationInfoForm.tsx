@@ -12,6 +12,7 @@ import {
   DEFAULT_MOOD
 } from "@/constants/default";
 import {generateImages} from "@/service/image-generation-service";
+import {IGeneratedImagesData, useGeneratedImagesStore} from "@/storage/generated-images-store";
 
 const GenerationInfoForm = () => {
 
@@ -21,6 +22,9 @@ const GenerationInfoForm = () => {
   const [firstColor, setFirstColor] = useState<string>(DEFAULT_GENERATION_STYLE_COLOR);
   const [secondColor, setSecondColor] = useState<string>(DEFAULT_GENERATION_STYLE_COLOR);
   const [thirdColor, setThirdColor] = useState<string>(DEFAULT_GENERATION_STYLE_COLOR);
+
+  const updatePromt = useGeneratedImagesStore(state => state.updatePromt)
+  const updateImages = useGeneratedImagesStore(state => state.updateImages)
 
   const handleSubmitGeneration = async () => {
     if (validate()) {
@@ -32,12 +36,15 @@ const GenerationInfoForm = () => {
         "colors": firstColor + "," + secondColor + "," + thirdColor
       }
 
-      const response = await generateImages(imageGenerationRequest);
-      console.log(response)
+      const response: IGeneratedImagesData = await generateImages(imageGenerationRequest);
+      console.log(response.promt)
+      console.log(response.images)
+      updatePromt(response.promt)
+      updateImages(response.images)
     }
   }
 
-  const validate = ():boolean => {
+  const validate = (): boolean => {
     if (url == "") {
       console.error("Impossible to make request without url")
       return false;
@@ -58,7 +65,7 @@ const GenerationInfoForm = () => {
                          value={aspectRatio}
                          onChange={setAspectRatio}
                          icon={<IconAspectRatio/>}
-                         variants={[DEFAULT_ASPECT_RATIO,"16:9", "20:5", "3:4"]}/>
+                         variants={[DEFAULT_ASPECT_RATIO, "16:9", "20:5", "3:4"]}/>
 
         <LabeledColorPicker value={firstColor} onChange={setFirstColor}
                             label="Choose first color for Image"/>
