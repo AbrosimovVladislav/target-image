@@ -22,12 +22,8 @@ const GenerationInfoForm = () => {
   const [secondColor, setSecondColor] = useState<string>(DEFAULT_GENERATION_STYLE_COLOR);
   const [thirdColor, setThirdColor] = useState<string>(DEFAULT_GENERATION_STYLE_COLOR);
 
-  const [validationError, setValidationError] = useState<string>(null);
-
-  const handleSubmitGeneration = () => {
-    validate();
-
-    if(validationError==null){
+  const handleSubmitGeneration = async () => {
+    if (validate()) {
 
       const imageGenerationRequest = {
         "url": url,
@@ -36,14 +32,17 @@ const GenerationInfoForm = () => {
         "colors": firstColor + "," + secondColor + "," + thirdColor
       }
 
-      const response = generateImages(imageGenerationRequest);
+      const response = await generateImages(imageGenerationRequest);
+      console.log(response)
     }
   }
 
-  const validate = () => {
+  const validate = ():boolean => {
     if (url == "") {
-      setValidationError("Impossible to make request without url");
+      console.error("Impossible to make request without url")
+      return false;
     }
+    return true;
   }
 
   return (
@@ -54,12 +53,12 @@ const GenerationInfoForm = () => {
                          value={mood}
                          onChange={setMood}
                          icon={<IconMoodNeutral/>}
-                         variants={["Professional", "Casual", "Horny"]}/>
+                         variants={[DEFAULT_MOOD, "Professional", "Horny"]}/>
         <LabeledDropdown label="Aspect Ratio"
                          value={aspectRatio}
                          onChange={setAspectRatio}
                          icon={<IconAspectRatio/>}
-                         variants={["16:9", "20:5", "3:4"]}/>
+                         variants={[DEFAULT_ASPECT_RATIO,"16:9", "20:5", "3:4"]}/>
 
         <LabeledColorPicker value={firstColor} onChange={setFirstColor}
                             label="Choose first color for Image"/>
