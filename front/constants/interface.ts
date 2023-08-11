@@ -4,3 +4,10 @@ export interface MenuItemData{
   link?:string;
   children?: MenuItemData[]
 }
+
+export interface GenerationRequestData{
+  "url": string,
+  "mood": string,
+  "aspectRatio": string,
+  "colors": string
+}

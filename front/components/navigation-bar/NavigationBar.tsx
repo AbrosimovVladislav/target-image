@@ -65,6 +65,7 @@ const NavigationBar = () => {
   const menuRendering = (array: MenuItem[]): JSX => {
     return array.map(item => {
           return <NavLink
+              key={item.label}
               className={activeItem==item.href
                   ? "text-gray-900 bg-green-50"
                   : "text-gray-700 hover:text-gray-900 hover:bg-green-100"}
