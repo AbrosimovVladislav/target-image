@@ -1,6 +1,6 @@
 import {NativeSelect} from '@mantine/core';
 
-interface LabeledDropdownProps {
+interface SDropdownProps {
   label: string,
   variants: string[],
   value: string,
@@ -8,7 +8,7 @@ interface LabeledDropdownProps {
   icon: JSX.Element
 }
 
-const LabeledDropdown = ({label, variants, value, onChange, icon}: LabeledDropdownProps) => {
+const SDropdown = ({label, variants, value, onChange, icon}: SDropdownProps) => {
   return (
       <NativeSelect
           icon={icon}
@@ -22,4 +22,4 @@ const LabeledDropdown = ({label, variants, value, onChange, icon}: LabeledDropdo
   )
 }
 
-export default LabeledDropdown;
+export default SDropdown;

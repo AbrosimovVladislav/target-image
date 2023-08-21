@@ -1,12 +1,12 @@
 import {useState} from 'react';
 import {ColorPicker, Badge, Text, Box, DEFAULT_THEME} from '@mantine/core';
 
-interface LabeledColorPickerProps {
+interface SColorPickerProps {
   label: string,
   onChange: (value: string) => void;
 }
 
-const LabeledColorPicker = ({label, onChange}: LabeledColorPickerProps) => {
+const SColorPicker = ({label, onChange}: SColorPickerProps) => {
 
   const [currentColor, setCurrentColor] = useState('#dee2e6');
 
@@ -59,4 +59,4 @@ const LabeledColorPicker = ({label, onChange}: LabeledColorPickerProps) => {
   )
 }
 
-export default LabeledColorPicker;
+export default SColorPicker;

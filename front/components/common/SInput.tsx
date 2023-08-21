@@ -1,6 +1,6 @@
 import {Input} from '@mantine/core';
 
-interface LabeledInputProps {
+interface SInputProps {
   label: string,
   placeholder: string,
   icon: JSX.Element,
@@ -8,7 +8,7 @@ interface LabeledInputProps {
   onChange: (value: string) => void;
 }
 
-const LabeledInput = ({label, placeholder, icon, value, onChange}: LabeledInputProps) => {
+const SInput = ({label, placeholder, icon, value, onChange}: SInputProps) => {
   return (
       <Input.Wrapper
           className="mb-4 w-96"
@@ -23,4 +23,4 @@ const LabeledInput = ({label, placeholder, icon, value, onChange}: LabeledInputP
   )
 }
 
-export default LabeledInput;
+export default SInput;

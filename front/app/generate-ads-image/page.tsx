@@ -1,17 +1,17 @@
 "use client"
 
 
-import Generated from "@/app/generate-ads-image/Generated";
-import GenerationInfoForm from "@/app/generate-ads-image/GenerationInfoForm";
+import GeneratedInfoCard from "@/app/generate-ads-image/GeneratedInfoCard";
+import GenerationRequestForm from "@/app/generate-ads-image/GenerationRequestForm";
 
 const GenerateAdsImage = () => {
   return (
       <div className="p-2 m-1 flex flex-row">
 
-        <GenerationInfoForm/>
+        <GenerationRequestForm/>
 
         <div className="m-4">
-          <Generated website="cleanhunter-sochi.ru"/>
+          <GeneratedInfoCard website="cleanhunter-sochi.ru"/>
         </div>
 
       </div>
